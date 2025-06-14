@@ -1,0 +1,63 @@
+services:
+  mongo1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mongo1
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: devuser
+      MONGO_INITDB_ROOT_PASSWORD: s3cr3tpass
+      PORT: 27017
+    volumes:
+      - mongo1_data:/data/db
+      - mongo1_config:/data/configdb
+
+  mongo2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mongo2
+    ports:
+      - 27018:27018
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: devuser
+      MONGO_INITDB_ROOT_PASSWORD: s3cr3tpass
+      PORT: 27018
+    volumes:
+      - mongo2_data:/data/db
+      - mongo2_config:/data/configdb
+
+  mongo3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mongo3
+    ports:
+      - 27019:27019
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: devuser
+      MONGO_INITDB_ROOT_PASSWORD: s3cr3tpass
+      PORT: 27019
+    volumes:
+      - mongo3_data:/data/db
+      - mongo3_config:/data/configdb
+
+  init-mongo:
+    image: mongo:7.0
+    depends_on:
+      - mongo1
+      - mongo2
+      - mongo3
+    volumes:
+      - ./init-replica.sh:/init-replica.sh:ro
+    entrypoint: ["/bin/sh", "/init-replica.sh"]
+
+volumes:
+  mongo1_data:
+  mongo2_data:
+  mongo3_data:
+  mongo1_config:
+  mongo2_config:
+  mongo3_config:

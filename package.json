@@ -1,0 +1,27 @@
+{
+  "name": "ga-ts-prototype",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "db:build": "docker-compose -f src/db/docker-compose.yml build",
+    "db:up": "docker-compose -f src/db/docker-compose.yml up -d",
+    "db:down": "docker-compose -f src/db/docker-compose.yml down -v",
+    "db:standup": "npm run db:build && npm run db:up",
+    "db:gen": "npx prisma generate",
+    "db:push": "prisma db push",
+    "db:status": "docker exec -it mongo1 mongosh -u devuser -p s3cr3tpass --authenticationDatabase admin --eval \"rs.status()\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^24.0.1",
+    "prisma": "^6.9.0",
+    "tsx": "^4.20.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.9.0"
+  }
+}
