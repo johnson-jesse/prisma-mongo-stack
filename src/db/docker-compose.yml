@@ -1,5 +1,7 @@
 services:
   mongo1:
+    env_file:
+      - ../../.env
     build:
       context: .
       dockerfile: Dockerfile
@@ -7,14 +9,14 @@ services:
     ports:
       - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       PORT: 27017
     volumes:
       - mongo1_data:/data/db
       - mongo1_config:/data/configdb
 
   mongo2:
+    env_file:
+      - ../../.env
     build:
       context: .
       dockerfile: Dockerfile
@@ -22,14 +24,14 @@ services:
     ports:
       - 27018:27018  
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       PORT: 27018
     volumes:
       - mongo2_data:/data/db
       - mongo2_config:/data/configdb
 
   mongo3:
+    env_file:
+      - ../../.env
     build:
       context: .
       dockerfile: Dockerfile
@@ -37,22 +39,19 @@ services:
     ports:
       - 27019:27019
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       PORT: 27019
     volumes:
       - mongo3_data:/data/db
       - mongo3_config:/data/configdb
 
   init-mongo:
+    env_file:
+      - ../../.env
     image: mongo:7.0
     depends_on:
       - mongo1
       - mongo2
       - mongo3
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - ./init-replica.sh:/init-replica.sh:ro
     entrypoint: ["/bin/sh", "/init-replica.sh"]
