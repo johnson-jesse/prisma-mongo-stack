@@ -3,7 +3,11 @@
 echo "Waiting for Mongo to be ready..."
 
 while true; do
-  mongosh --host mongo1 --port 27017 -u devuser -p s3cr3tpass --authenticationDatabase admin --eval "db.adminCommand('ping')" --quiet
+  mongosh --host mongo1 --port 27017 \
+    -u "${MONGO_INITDB_ROOT_USERNAME}" \
+    -p "${MONGO_INITDB_ROOT_PASSWORD}" \
+    --authenticationDatabase admin \
+    --eval "db.adminCommand('ping')" --quiet
   if [ $? -eq 0 ]; then
     echo "Mongo is up!"
     break
@@ -14,7 +18,10 @@ done
 
 echo "Initiating replica set..."
 
-mongosh --host mongo1 --port 27017 -u devuser -p s3cr3tpass --authenticationDatabase admin --eval '
+mongosh --host mongo1 --port 27017 \
+  -u "${MONGO_INITDB_ROOT_USERNAME}" \
+  -p "${MONGO_INITDB_ROOT_PASSWORD}" \
+  --authenticationDatabase admin --eval '
   cfg = {
     _id: "rs0",
     members: [

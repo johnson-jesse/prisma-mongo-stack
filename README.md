@@ -10,8 +10,7 @@
 2) [Mongodb](https://www.mongodb.com/docs/mongodb-shell/install/) For easy shell database access
 
 ## Get Started DB
-
-Run
+Create a `.env` file based on `.env.example.md` and update the user name and password accordingly. Then run:
 ```sh
 npm run db:standup
 ```

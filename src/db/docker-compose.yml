@@ -7,8 +7,8 @@ services:
     ports:
       - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: devuser
-      MONGO_INITDB_ROOT_PASSWORD: s3cr3tpass
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       PORT: 27017
     volumes:
       - mongo1_data:/data/db
@@ -20,10 +20,10 @@ services:
       dockerfile: Dockerfile
     container_name: mongo2
     ports:
-      - 27018:27018
+      - 27018:27018  
     environment:
-      MONGO_INITDB_ROOT_USERNAME: devuser
-      MONGO_INITDB_ROOT_PASSWORD: s3cr3tpass
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       PORT: 27018
     volumes:
       - mongo2_data:/data/db
@@ -37,8 +37,8 @@ services:
     ports:
       - 27019:27019
     environment:
-      MONGO_INITDB_ROOT_USERNAME: devuser
-      MONGO_INITDB_ROOT_PASSWORD: s3cr3tpass
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       PORT: 27019
     volumes:
       - mongo3_data:/data/db
@@ -50,6 +50,9 @@ services:
       - mongo1
       - mongo2
       - mongo3
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - ./init-replica.sh:/init-replica.sh:ro
     entrypoint: ["/bin/sh", "/init-replica.sh"]
