@@ -4,3 +4,6 @@ node_modules
 
 generated
 
+# Mongo local data (don't commit DB files!)
+/src/db/data/
+/src/db/config/

@@ -11,8 +11,8 @@ services:
     environment:
       PORT: 27017
     volumes:
-      - mongo1_data:/data/db
-      - mongo1_config:/data/configdb
+      - ./data/mongo1:/data/db
+      - ./config/mongo1:/data/configdb
 
   mongo2:
     env_file:
@@ -26,8 +26,8 @@ services:
     environment:
       PORT: 27018
     volumes:
-      - mongo2_data:/data/db
-      - mongo2_config:/data/configdb
+      - ./data/mongo2:/data/db
+      - ./config/mongo2:/data/configdb
 
   mongo3:
     env_file:
@@ -41,8 +41,8 @@ services:
     environment:
       PORT: 27019
     volumes:
-      - mongo3_data:/data/db
-      - mongo3_config:/data/configdb
+      - ./data/mongo3:/data/db
+      - ./config/mongo3:/data/configdb
 
   init-mongo:
     env_file:
@@ -55,11 +55,3 @@ services:
     volumes:
       - ./init-replica.sh:/init-replica.sh:ro
     entrypoint: ["/bin/sh", "/init-replica.sh"]
-
-volumes:
-  mongo1_data:
-  mongo2_data:
-  mongo3_data:
-  mongo1_config:
-  mongo2_config:
-  mongo3_config:

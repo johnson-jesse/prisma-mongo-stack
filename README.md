@@ -1,12 +1,12 @@
 # Prisma MongoDB Prototype Stack
 
-## Prerequisites
+### Prerequisites
 
 1) Project requires [Docker](https://docs.docker.com/engine/install/) to be installed.
 2) [Update your hosts file](#updating-your-hosts-file) to make it work on Windows, macOS, or Linux.
 
-## Tools (optional)
-1) [MongoDB Compass](https://www.mongodb.com/docs/compass/install/) For easy UI database access
+### Tools (optional)
+1) [MongoDB Compass](https://www.mongodb.com/docs/compass/install/) For easy UI database access - [connection string](#mongodb-compass-connection-string)
 2) [Mongodb](https://www.mongodb.com/docs/mongodb-shell/install/) For easy shell database access
 
 ## Get Started DB
@@ -17,6 +17,9 @@ npm run db:standup
 
 ## Get Started UI
 
+
+## Supplemental Information
+
 ### MongoDB Compass connection string
 Replace user and password. Confirm replicaSet match docker-compose
 
@@ -24,12 +27,12 @@ Replace user and password. Confirm replicaSet match docker-compose
 mongodb://{user}:{password}@127.0.0.1:27017,127.0.0.1:27018,127.0.0.1:27019/?replicaSet=rs0&authSource=admin
 ```
 
-## Updating Your Hosts File
+### Updating Your Hosts File
 
 To resolve custom hostnames like `mongo1`, `mongo2`, and `mongo3` to `localhost`, you can update your system's hosts file.
 
 
-### 🪟 Windows
+#### 🪟 Windows
 
 1. Open Notepad as Administrator.
 2. Open the file: `C:\Windows\System32\drivers\etc\hosts`
@@ -39,8 +42,8 @@ To resolve custom hostnames like `mongo1`, `mongo2`, and `mongo3` to `localhost`
 127.0.0.1 mongo2
 127.0.0.1 mongo3
 ```
-
-### 🍎 macOS
+---
+#### 🍎 macOS
 
 1. Open Terminal.
 2. Run: `sudo nano /etc/hosts`
@@ -51,8 +54,8 @@ To resolve custom hostnames like `mongo1`, `mongo2`, and `mongo3` to `localhost`
 127.0.0.1 mongo3
 ```
 4. Save (`Ctrl + O`, `Enter`) and exit (`Ctrl + X`).
-
-### 🐧 Linux
+---
+#### 🐧 Linux
 
 1. Open Terminal.
 2. Run: `sudo nano /etc/hosts`
