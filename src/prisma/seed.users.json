@@ -1,0 +1,47 @@
+[
+  {
+    "email": "alice@example.com",
+    "name": "Alice Smith",
+    "address": {
+      "street": "123 Maple St",
+      "city": "Springfield",
+      "state": "IL",
+      "zip": "62704"
+    },
+    "posts": []
+  },
+  {
+    "email": "bob@example.com",
+    "name": "Bob Johnson",
+    "address": null,
+    "posts": []
+  },
+  {
+    "email": "carol@example.com",
+    "name": "Carol White",
+    "address": {
+      "street": "456 Oak Ave",
+      "city": "Riverdale",
+      "state": "NY",
+      "zip": "10566"
+    },
+    "posts": []
+  },
+  {
+    "email": "dan@example.com",
+    "name": null,
+    "address": null,
+    "posts": []
+  },
+  {
+    "email": "eve@example.com",
+    "name": "Eve Black",
+    "address": {
+      "street": "789 Pine Rd",
+      "city": "Centerville",
+      "state": "CA",
+      "zip": "95014"
+    },
+    "posts": []
+  }
+]

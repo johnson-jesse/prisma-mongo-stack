@@ -7,24 +7,48 @@
   "license": "ISC",
   "description": "",
   "prisma": {
-    "schema": "src/prisma/schema.prisma"
+    "schema": "./prisma/schema/",
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} src/prisma/seed.ts"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^24.0.1",
-    "prisma": "^6.9.0",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.3",
+    "prisma": "6.9.0",
+    "ts-node": "^10.9.2",
     "tsx": "^4.20.2",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@prisma/client": "^6.9.0"
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.1.1",
+    "@mui/material": "^7.1.1",
+    "@mui/material-nextjs": "^7.1.1",
+    "@prisma/client": "6.9.0",
+    "bcrypt": "^6.0.0",
+    "next": "^15.3.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.57.0"
   },
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:seed": "npx prisma db seed",
     "db:build": "docker-compose -f src/db/docker-compose.yml build",
     "db:up": "docker-compose -f src/db/docker-compose.yml up -d",
     "db:down": "docker-compose -f src/db/docker-compose.yml down -v",
     "db:standup": "npm run db:build && npm run db:up",
-    "db:gen": "npx prisma generate",
-    "db:push": "prisma db push",
+    "db:gen": "npx prisma generate --schema=src/prisma/schema/",
+    "db:push": "prisma db push --schema=src/prisma/schema/",
     "db:status": "docker exec -it mongo1 mongosh -u devuser -p s3cr3tpass --authenticationDatabase admin --eval \"rs.status()\""
   }
 }

@@ -68,3 +68,13 @@ To resolve custom hostnames like `mongo1`, `mongo2`, and `mongo3` to `localhost`
 4. Save and exit the editor.
 
 > ✅ These changes let you connect to your local MongoDB containers by name (e.g., `mongo1:27017`) instead of by IP.
+
+### Design decisions
+
+#### Mongo Cluster
+A replica set is required with docker and prisma. This stack is built on the [pattern suggested by MongoDB](https://www.mongodb.com/resources/products/compatibilities/deploying-a-mongodb-cluster-with-docker)
+
+---
+
+#### Prisma & Nextjs
+[How Prisma and Next.js fit together](https://www.prisma.io/nextjs)
