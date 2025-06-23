@@ -26,7 +26,7 @@ export async function createUser(_prevState: unknown, formData: FormData): Promi
   if (existingUser)
     return {
       errors: {
-        email: ['This email is unavailable'],
+        email: ['common:errors.fields.email.taken'],
       },
     };
 
