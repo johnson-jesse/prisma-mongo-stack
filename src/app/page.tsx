@@ -1,9 +1,9 @@
-import { CreateUser } from "./components/CreateUser";
+import { Typography } from '@mui/material';
 
 export default function Page() {
   return (
     <>
-      <CreateUser />
+      <Typography variant="h1">Welcome Home!</Typography>
     </>
   );
 }

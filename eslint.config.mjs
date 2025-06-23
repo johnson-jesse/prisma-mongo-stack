@@ -48,7 +48,7 @@ const eslintConfig = [
           ],
           pathGroups: [
             {
-              pattern: "@/**",
+              pattern: "@src/**",
               group: "internal",
               position: "after",
             },

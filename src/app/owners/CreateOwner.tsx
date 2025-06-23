@@ -5,11 +5,12 @@ import { Button, Card, CardActions, CardContent, CardHeader, FormControl, InputL
 import { useActionState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
-import { useFormStateErrors } from '@_app/library/useFromStateErrors';
-import { CreateUserFormState, CreateUserSchema, DefaultCreateUser, type CreateUser } from '@_app/services/user/type';
+import { useFormStateErrors } from '@src/app/library/useFromStateErrors';
+import { CreateUserFormState, CreateUserSchema, DefaultCreateUser, type CreateUser } from '@src/app/owners/type';
 
-import { ZodHelperError } from './ZodHelperError';
-import { createUser } from '../services/user/actions/create';
+
+import { ZodHelperError } from '../common/ZodHelperError';
+import { createUser } from './actions/create';
 
 const READONLY_OBJECT = {} as const;
 
@@ -30,7 +31,7 @@ export function CreateUser() {
   return (
     <form noValidate action={formAction}>
       <Card raised sx={{ width: 'fit-content', padding: 1 }}>
-        <CardHeader title="Create User" />
+        <CardHeader title="Create Owner" />
         <CardContent sx={{ display: 'flex', gap: 4 }}>
           <FormControl error={'name' in errors}>
             <InputLabel htmlFor="user-name">Name</InputLabel>
@@ -71,7 +72,7 @@ export function CreateUser() {
             disabled={pending}
             onClick={handleSubmitClick}
           >
-            Create User
+            Create Owner
           </Button>
         </CardActions>
       </Card>

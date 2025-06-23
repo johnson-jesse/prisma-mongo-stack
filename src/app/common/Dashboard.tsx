@@ -19,11 +19,11 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 const pages = [
-  { label: "My Ministry", path: "/ministry" },
-  { label: "Volunteers", path: "/volunteers" },
-  { label: "Residents", path: "/residents" },
-  { label: "Facilities", path: "/facilities" },
-  { label: "Zones", path: "/zones" },
+  { label: "Activity", path: "/activity" },
+  { label: "Owners", path: "/owners" },
+  { label: "Contractors", path: "/contractors" },
+  { label: "Homes", path: "/homes" },
+  { label: "Streets", path: "/streets" },
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 

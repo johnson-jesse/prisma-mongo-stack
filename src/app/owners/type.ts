@@ -1,6 +1,6 @@
 import { z } from 'zod/v4';
 
-import { ActionErrors } from '@_app/library/useFromStateErrors';
+import { ActionErrors } from '@src/app/library/useFromStateErrors';
 
 export const CreateUserSchema = z.object({
   name: z.string().optional(),

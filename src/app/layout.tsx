@@ -1,9 +1,10 @@
 import { Box, CssBaseline } from "@mui/material";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { Roboto } from "next/font/google";
+
+import { Dashboard } from "./common/Dashboard";
 import theme from "./theme";
-import { Dashboard } from "./components/Dashboard";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
