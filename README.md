@@ -16,7 +16,17 @@ npm run db:standup
 ```
 
 ## Get Started UI
+Install:
+```sh
+npm install
+```
 
+Then run:
+```sh
+npm run dev
+```
+
+visit: `localhost:3000`
 
 ## Supplemental Information
 
