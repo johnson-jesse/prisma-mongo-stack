@@ -1,32 +1,23 @@
 'use server';
 
-import { hashPassword } from '@app/library/password';
-import { PrismaClient } from '@generated/prisma/client';
+import z from 'zod/v4';
+
+import { PrismaClient } from '@_/generated/prisma/client';
+import { hashPassword } from '@_app/library/password';
+
+import { CreateUserSchema, CreateUserFormState } from '../type';
 
 const prisma = new PrismaClient();
 
-export async function createUser(_prevState: unknown, formData: FormData) {
+export async function createUser(_prevState: unknown, formData: FormData): Promise<CreateUserFormState> {
   const name = formData.get('name') as string;
   const email = formData.get('email') as string;
   const clearCase = formData.get('password') as string;
 
-  console.log(name, email, clearCase);
-
-  if (!email)
-    return {
-      message: 'email is required to create a user',
-      name: 'email',
-      error: true,
-    };
-
-  if (!clearCase)
-    return {
-      message: 'password is required to create a user',
-      name: 'password',
-      error: true,
-    };
-
-  if (clearCase.length < 8) return { message: 'password is too simple', name: 'password', error: true };
+  const result = CreateUserSchema.safeParse({ name, email, password: clearCase });
+  if (!result.success) {    
+    return { errors: z.flattenError(result.error).fieldErrors };
+  }
 
   const existingUser = await prisma.user.findUnique({
     where: { email },
@@ -34,14 +25,14 @@ export async function createUser(_prevState: unknown, formData: FormData) {
 
   if (existingUser)
     return {
-      message: 'This email is unavailable',
-      name: 'email',
-      error: true,
+      errors: {
+        email: ['This email is unavailable'],
+      },
     };
 
   const password = await hashPassword(clearCase);
 
-  await prisma.user.create({
+  const user = await prisma.user.create({
     data: {
       name,
       email,
@@ -49,5 +40,5 @@ export async function createUser(_prevState: unknown, formData: FormData) {
     },
   });
 
-  return { message: 'ok', error: false };
+  return { id: user.id };
 }

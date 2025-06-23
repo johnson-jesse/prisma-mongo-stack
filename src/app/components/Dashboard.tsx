@@ -50,7 +50,6 @@ export function Dashboard() {
     setAnchorElUser(null);
   };
 
-  console.log("pathname", pathname);
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
