@@ -1,4 +1,5 @@
 import { readFileSync } from "fs";
+
 import { PrismaClient } from "../../generated/prisma/client";
 
 const users = JSON.parse(readFileSync("./src/prisma/seed.users.json", "utf8"));

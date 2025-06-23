@@ -4,24 +4,25 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Card, CardActions, CardContent, CardHeader, FormControl, InputLabel, OutlinedInput } from '@mui/material';
 import { useActionState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
-import { useFormStateErrors } from '@src/app/library/useFromStateErrors';
-import { CreateUserFormState, CreateUserSchema, DefaultCreateUser, type CreateUser } from '@src/app/owners/type';
-
-
-import { ZodHelperError } from '../common/ZodHelperError';
 import { createUser } from './actions/create';
+import { CreateOwner, CreateUserFormState, CreateUserSchema, DefaultCreateUser } from './type';
+
+import { ZodHelperError } from '@/app/components/ZodHelperError';
+import { useFormStateErrors } from '@/app/library/useFromStateErrors';
 
 const READONLY_OBJECT = {} as const;
 
 export function CreateUser() {
-  const { control, trigger, formState } = useForm<CreateUser>({
+  const { t } = useTranslation('owners');
+  const { control, trigger, formState } = useForm<CreateOwner>({
     defaultValues: DefaultCreateUser,
     resolver: zodResolver(CreateUserSchema),
   });
   const [state, formAction, pending] = useActionState(createUser, READONLY_OBJECT as CreateUserFormState);
   const errors = useFormStateErrors(state, formState.errors);
-  
+
   const handleSubmitClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     trigger().then((isValid) => {
       if (!isValid) e.preventDefault();
@@ -31,34 +32,36 @@ export function CreateUser() {
   return (
     <form noValidate action={formAction}>
       <Card raised sx={{ width: 'fit-content', padding: 1 }}>
-        <CardHeader title="Create Owner" />
+        <CardHeader title={t("title")} />
         <CardContent sx={{ display: 'flex', gap: 4 }}>
           <FormControl error={'name' in errors}>
-            <InputLabel htmlFor="user-name">Name</InputLabel>
+            <InputLabel htmlFor="user-name">{t('fields.name')}</InputLabel>
             <Controller
               name="name"
               control={control}
-              render={({ field }) => <OutlinedInput id="user-name" label="Name" size="small" {...field} />}
+              render={({ field }) => <OutlinedInput id="user-name" label={t('fields.name')} size="small" {...field} />}
             />
             <ZodHelperError name="name" errors={errors} />
           </FormControl>
           <FormControl required error={'email' in errors}>
-            <InputLabel htmlFor="user-email">Email</InputLabel>
+            <InputLabel htmlFor="user-email">{t('fields.email')}</InputLabel>
             <Controller
               name="email"
               control={control}
               rules={{ required: true }}
-              render={({ field }) => <OutlinedInput id="user-email" label="Email" size="small" {...field} />}
+              render={({ field }) => <OutlinedInput id="user-email" label={t('fields.email')} size="small" {...field} />}
             />
             <ZodHelperError name="email" errors={errors} />
           </FormControl>
           <FormControl required error={'password' in errors}>
-            <InputLabel htmlFor="user-password">Password</InputLabel>
+            <InputLabel htmlFor="user-password">{t('fields.password')}</InputLabel>
             <Controller
               name="password"
               control={control}
               rules={{ required: true }}
-              render={({ field }) => <OutlinedInput id="user-password" label="Password" size="small" {...field} />}
+              render={({ field }) => (
+                <OutlinedInput id="user-password" label={t('fields.password')} size="small" {...field} />
+              )}
             />
             <ZodHelperError name="password" errors={errors} />
           </FormControl>
@@ -72,7 +75,7 @@ export function CreateUser() {
             disabled={pending}
             onClick={handleSubmitClick}
           >
-            Create Owner
+            {t('fields.action')}
           </Button>
         </CardActions>
       </Card>

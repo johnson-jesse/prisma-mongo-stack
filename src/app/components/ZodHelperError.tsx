@@ -1,9 +1,7 @@
 import { FormHelperText } from '@mui/material';
 import { FieldValues } from 'react-hook-form';
 
-import { ErrorMap } from '@src/app/library/useFromStateErrors';
-
-
+import { ErrorMap } from '@/app/library/useFromStateErrors';
 
 type Props<T extends FieldValues> = {
   name: string;

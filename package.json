@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@prisma/client": "6.10.1",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^24.0.1",
     "@types/react": "19.1.8",
@@ -19,7 +20,6 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
     "eslint-plugin-import": "^2.31.0",
-    "prisma": "6.9.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.2",
     "typescript": "^5.8.3"
@@ -32,12 +32,17 @@
     "@mui/icons-material": "^7.1.1",
     "@mui/material": "^7.1.1",
     "@mui/material-nextjs": "^7.1.1",
-    "@prisma/client": "6.9.0",
     "bcrypt": "^6.0.0",
+    "i18next": "^25.2.1",
+    "i18next-resources-to-backend": "^1.2.1",
     "next": "^15.3.3",
+    "next-i18n-router": "^5.5.2",
+    "next-i18next": "^15.4.2",
+    "prisma": "6.10.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.57.0",
+    "react-i18next": "^15.5.3",
     "zod": "^3.25.64"
   },
   "scripts": {

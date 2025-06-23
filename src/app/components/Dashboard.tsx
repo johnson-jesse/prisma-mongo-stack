@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const pages = [
   { label: "Activity", path: "/activity" },
@@ -28,6 +29,7 @@ const pages = [
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export function Dashboard() {
+  const { t } = useTranslation("common")
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const router = useRouter();
@@ -70,7 +72,7 @@ export function Dashboard() {
               textDecoration: "none",
             }}
           >
-            GatedCommunity
+            {t("title")}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -130,7 +132,7 @@ export function Dashboard() {
               textDecoration: "none",
             }}
           >
-            GatedCommunity
+            {t("title")}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

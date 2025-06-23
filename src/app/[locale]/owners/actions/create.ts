@@ -2,10 +2,10 @@
 
 import z from 'zod/v4';
 
-import { hashPassword } from '@src/app/library/password';
-import { PrismaClient } from '@src/prisma/client';
-
 import { CreateUserFormState, CreateUserSchema } from '../type';
+
+import { hashPassword } from '@/app/library/password';
+import { PrismaClient } from '@/prisma/client';
 
 const prisma = new PrismaClient();
 

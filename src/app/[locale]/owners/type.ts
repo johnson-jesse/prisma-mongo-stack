@@ -1,6 +1,6 @@
 import { z } from 'zod/v4';
 
-import { ActionErrors } from '@src/app/library/useFromStateErrors';
+import { ActionErrors } from '@/app/library/useFromStateErrors';
 
 export const CreateUserSchema = z.object({
   name: z.string().optional(),
@@ -8,9 +8,9 @@ export const CreateUserSchema = z.object({
   password: z.string().min(8, { error: (iss) => (!iss.input ? 'Field is required' : 'Too short') }),
 });
 
-export type CreateUser = z.infer<typeof CreateUserSchema>;
+export type CreateOwner = z.infer<typeof CreateUserSchema>;
 
-export const DefaultCreateUser: CreateUser = {
+export const DefaultCreateUser: CreateOwner = {
   name: '',
   email: '',
   password: '',
