@@ -54,6 +54,17 @@ const theme = createTheme({
         }),
       },
     },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          ".active": {
+            borderBottom: `2px solid ${theme.palette.primary.main}`,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+          },
+        }),
+      },
+    }
   },
 });
 

@@ -11,6 +11,7 @@ model User {
   email    String   @unique
   name     String?
   password String
+  thumbnail String?
   role     Role     @default(GUEST)
   address  Address?
   posts    Post[]

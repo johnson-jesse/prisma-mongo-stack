@@ -1,0 +1,27 @@
+{
+  "title": "(ja)GatedCommunity",
+  "errors": {
+    "fields": {
+      "required": "(ja)Field is required",
+      "email": {
+        "taken": "(ja)This email is unavailable"
+      },
+      "password": {
+        "short": "(ja)Too short"
+      }
+    }
+  },
+  "features": {
+    "activity": "(ja)Activity",
+    "owners": "(ja)Owners",
+    "contractors": "(ja)Contractors",
+    "homes": "(ja)Homes",
+    "streets": "(ja)Streets"
+  },
+  "languages": {
+    "en": "English",
+    "es": "Español",
+    "de": "Deutsch",
+    "ja": "日本語"
+  }
+}

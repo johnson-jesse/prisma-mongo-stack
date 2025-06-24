@@ -10,5 +10,18 @@
         "short": "(es)Too short"
       }
     }
+  },
+  "features": {
+    "activity": "(es)Activity",
+    "owners": "(es)Owners",
+    "contractors": "(es)Contractors",
+    "homes": "(es)Homes",
+    "streets": "(es)Streets"
+  },
+  "languages": {
+    "en": "English",
+    "es": "Español",
+    "de": "Deutsch",
+    "ja": "日本語"
   }
 }

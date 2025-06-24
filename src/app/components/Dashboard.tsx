@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   Container,
+  Divider,
   IconButton,
   Menu,
   MenuItem,
@@ -19,16 +20,19 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import LanguageChanger from './LanguageChanger';
+import { Anyone } from '../library/type';
+
 const pages = [
-  { label: 'Activity', path: '/activity' },
-  { label: 'Owners', path: '/owners' },
-  { label: 'Contractors', path: '/contractors' },
-  { label: 'Homes', path: '/homes' },
-  { label: 'Streets', path: '/streets' },
+  { label: 'features.activity', path: '/activity' },
+  { label: 'features.owners', path: '/owners' },
+  { label: 'features.contractors', path: '/contractors' },
+  { label: 'features.homes', path: '/homes' },
+  { label: 'features.streets', path: '/streets' },
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-export function Dashboard() {
+export function Dashboard({ member }: { member: Anyone }) {
   const { t } = useTranslation('common');
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -85,28 +89,30 @@ export function Dashboard() {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-dashboard"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.path} data-path={page.path} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page.label}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            {anchorElNav && (
+              <Menu
+                id="menu-dashboard"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{ display: { xs: 'block', md: 'none' } }}
+              >
+                {pages.map((page) => (
+                  <MenuItem key={page.path} data-path={page.path} onClick={handleCloseNavMenu}>
+                    <Typography sx={{ textAlign: 'center' }}>{t(page.label)}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            )}
           </Box>
           <BlurOnIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
@@ -136,14 +142,14 @@ export function Dashboard() {
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 className={pathname?.startsWith(page.path) ? 'active' : ''}
               >
-                {page.label}
+                {t(page.label)}
               </Button>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={member?.thumbnail || ''} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -167,6 +173,8 @@ export function Dashboard() {
                   <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                 </MenuItem>
               ))}
+              <Divider />
+              <LanguageChanger onChange={handleCloseUserMenu} />
             </Menu>
           </Box>
         </Toolbar>

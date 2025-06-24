@@ -1,0 +1,9 @@
+{
+  "title": "(es)Owners",
+  "fields": {
+    "name": "(es)Name",
+    "email": "(es)Email",
+    "password": "(es)Password",
+    "action": "(es)Create Owner"
+  }
+}
