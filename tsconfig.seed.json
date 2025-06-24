@@ -1,6 +1,13 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "CommonJS"
-  }
+    "target": "ES2020",
+    "module": "CommonJS",
+    "declaration": true,
+    "outDir": "./generated/prisma/client-dist",
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+  },
+  "include": ["generated/prisma/client"]
 }

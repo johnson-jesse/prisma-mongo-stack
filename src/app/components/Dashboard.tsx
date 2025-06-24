@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import BlurOnIcon from "@mui/icons-material/BlurOn";
-import MenuIcon from "@mui/icons-material/Menu";
+import BlurOnIcon from '@mui/icons-material/BlurOn';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
   Avatar,
@@ -14,27 +14,26 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-} from "@mui/material";
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
+} from '@mui/material';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const pages = [
-  { label: "Activity", path: "/activity" },
-  { label: "Owners", path: "/owners" },
-  { label: "Contractors", path: "/contractors" },
-  { label: "Homes", path: "/homes" },
-  { label: "Streets", path: "/streets" },
+  { label: 'Activity', path: '/activity' },
+  { label: 'Owners', path: '/owners' },
+  { label: 'Contractors', path: '/contractors' },
+  { label: 'Homes', path: '/homes' },
+  { label: 'Streets', path: '/streets' },
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export function Dashboard() {
-  const { t } = useTranslation("common")
+  const { t } = useTranslation('common');
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const router = useRouter();
   const pathname = usePathname();
-
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -43,7 +42,7 @@ export function Dashboard() {
   };
 
   const handleCloseNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    const path = event.currentTarget.getAttribute("data-path");
+    const path = event.currentTarget.getAttribute('data-path');
     if (path) router.push(path);
     setAnchorElNav(null);
   };
@@ -56,7 +55,7 @@ export function Dashboard() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <BlurOnIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <BlurOnIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -64,18 +63,18 @@ export function Dashboard() {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
             }}
           >
-            {t("title")}
+            {t('title')}
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -90,32 +89,26 @@ export function Dashboard() {
               id="menu-dashboard"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
+                vertical: 'top',
+                horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{ display: { xs: "block", md: "none" } }}
+              sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem
-                  key={page.path}
-                  data-path={page.path}
-                  onClick={handleCloseNavMenu}
-                >
-                  <Typography sx={{ textAlign: "center" }}>
-                    {page.label}
-                  </Typography>
+                <MenuItem key={page.path} data-path={page.path} onClick={handleCloseNavMenu}>
+                  <Typography sx={{ textAlign: 'center' }}>{page.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <BlurOnIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <BlurOnIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -123,25 +116,25 @@ export function Dashboard() {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
             }}
           >
-            {t("title")}
+            {t('title')}
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page.path}
                 onClick={handleCloseNavMenu}
                 data-path={page.path}
-                sx={{ my: 2, color: "white", display: "block" }}
-                className={pathname === page.path ? 'active' : ''}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+                className={pathname?.startsWith(page.path) ? 'active' : ''}
               >
                 {page.label}
               </Button>
@@ -154,26 +147,24 @@ export function Dashboard() {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: "45px" }}
+              sx={{ mt: '45px' }}
               id="menu-dashboard"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: "center" }}>
-                    {setting}
-                  </Typography>
+                  <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>

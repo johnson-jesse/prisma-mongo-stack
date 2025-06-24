@@ -1,16 +1,12 @@
-'use client'
+import { getOwners } from './owners.service';
+import { MemberTable } from '../../components/MemberTable';
 
-import { Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+export default async function Page() {
+  const owners = await getOwners()
 
-import { CreateUser } from './CreateOwner';
-
-export default function Page() {
-  const { t } = useTranslation("owners");
   return (
     <>
-      <Typography variant="h1" gutterBottom>{t("title")}</Typography>
-      <CreateUser />
+      <MemberTable rows={owners} />
     </>
   );
 }

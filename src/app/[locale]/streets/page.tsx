@@ -1,5 +1,13 @@
-import { Typography } from "@mui/material";
+import TitleBox from '@/app/components/TitleBox';
+import { Title, Verbiage } from '@/app/components/Verbiage';
 
 export default function Page() {
-  return <Typography variant="h1">Streets</Typography>;
+  return (
+    <>
+      <TitleBox>
+        <Title path="streets:title" />
+      </TitleBox>
+      <Verbiage path="streets:message" />
+    </>
+  );
 }

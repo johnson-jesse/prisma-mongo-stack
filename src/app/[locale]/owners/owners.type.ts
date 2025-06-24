@@ -1,5 +1,6 @@
 import { z } from 'zod/v4';
 
+import { Member } from '@/app/library/type';
 import { ActionErrors } from '@/app/library/useFromStateErrors';
 
 export const CreateUserSchema = z.object({
@@ -21,3 +22,5 @@ export type Ident = string;
 export interface CreateUserFormState extends ActionErrors {
   id?: Ident;
 };
+
+export type Owner = Member<'OWNER'>;

@@ -1,9 +1,13 @@
-'use client'
-
-import { Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import TitleBox from '@/app/components/TitleBox';
+import { Title, Verbiage } from '@/app/components/Verbiage';
 
 export default function Page() {
-  const { t } = useTranslation("activity");
-  return <Typography variant="h1">{t("title")}</Typography>;
+  return (
+    <>
+      <TitleBox>
+        <Title path="activity:title" />
+      </TitleBox>
+      <Verbiage path="activity:message" />
+    </>
+  );
 }

@@ -2,12 +2,10 @@
 
 import z from 'zod/v4';
 
-import { CreateUserFormState, CreateUserSchema } from '../type';
-
 import { hashPassword } from '@/app/library/password';
-import { PrismaClient } from '@/prisma/client';
+import prisma from '@/app/library/prisma';
 
-const prisma = new PrismaClient();
+import { CreateUserFormState, CreateUserSchema } from '../owners.type';
 
 export async function createUser(_prevState: unknown, formData: FormData): Promise<CreateUserFormState> {
   const name = formData.get('name') as string;
@@ -37,6 +35,7 @@ export async function createUser(_prevState: unknown, formData: FormData): Promi
       name,
       email,
       password,
+      role: "OWNER"
     },
   });
 

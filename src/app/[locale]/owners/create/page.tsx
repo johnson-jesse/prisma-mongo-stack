@@ -6,15 +6,15 @@ import { useActionState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { createUser } from './actions/create';
-import { CreateOwner, CreateUserFormState, CreateUserSchema, DefaultCreateUser } from './type';
+import { createUser } from '../actions/create';
+import { CreateOwner, CreateUserFormState, CreateUserSchema, DefaultCreateUser } from '../owners.type';
 
 import { ZodHelperError } from '@/app/components/ZodHelperError';
 import { useFormStateErrors } from '@/app/library/useFromStateErrors';
 
 const READONLY_OBJECT = {} as const;
 
-export function CreateUser() {
+export default function Page() {
   const { t } = useTranslation('owners');
   const { control, trigger, formState } = useForm<CreateOwner>({
     defaultValues: DefaultCreateUser,
@@ -32,7 +32,7 @@ export function CreateUser() {
   return (
     <form noValidate action={formAction}>
       <Card raised sx={{ width: 'fit-content', padding: 1 }}>
-        <CardHeader title={t("title")} />
+        <CardHeader title={t('title')} />
         <CardContent sx={{ display: 'flex', gap: 4 }}>
           <FormControl error={'name' in errors}>
             <InputLabel htmlFor="user-name">{t('fields.name')}</InputLabel>

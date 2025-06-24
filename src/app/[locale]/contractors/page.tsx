@@ -1,9 +1,18 @@
-'use client'
+import { MemberTable } from '@/app/components/MemberTable';
+import TitleBox from '@/app/components/TitleBox';
+import { Title } from '@/app/components/Verbiage';
 
-import { Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import { getContractors } from './contractors.service';
 
-export default function Page() {
-  const { t } = useTranslation("contractors");
-  return <Typography variant="h1">{t("title")}</Typography>;
+export default async function Page() {
+  const contractors = await getContractors();
+
+  return (
+    <>
+      <TitleBox>
+        <Title path="contractors:title" gutterBottom={false} />
+      </TitleBox>
+      <MemberTable rows={contractors} />
+    </>
+  );
 }

@@ -1,14 +1,14 @@
 {
-    "title": "GatedCommunity",
-    "errors": {
-        "fields": {
-            "required": "Field is required",
-            "email": {
-                "taken": "This email is unavailable"
-            },
-            "password": {
-                "short": "Too short"
-            }
-        }
+  "title": "(es)GatedCommunity",
+  "errors": {
+    "fields": {
+      "required": "(es)Field is required",
+      "email": {
+        "taken": "(es)This email is unavailable"
+      },
+      "password": {
+        "short": "(es)Too short"
+      }
     }
+  }
 }

@@ -1,16 +1,30 @@
-import { readFileSync } from "fs";
+import { readFileSync } from 'fs';
 
-import { PrismaClient } from "../../generated/prisma/client";
+import { PrismaClient } from '../../generated/prisma/client';
+import { hashPassword } from '../app/library/password';
 
-const users = JSON.parse(readFileSync("./src/prisma/seed.users.json", "utf8"));
+const users = JSON.parse(readFileSync('./src/prisma/seed.users.json', 'utf8'));
 const prisma = new PrismaClient();
 
 async function main() {
+  // Delete all users first (and cascade if needed)
+  await prisma.user.deleteMany();
+
   for (const user of users) {
-    console.log("Users seeded", user);
-    await prisma.user.create({ data: user });
+    const data = {
+      name: user.name,
+      email: user.email,
+      password: await hashPassword(user.password),
+      role: user.role,
+      address: {
+        street: user.street,
+        city: user.city,
+        state: user.state,
+        zip: user.zip,
+      },
+    };
+    await prisma.user.create({ data });
   }
-  // console.log("Users seeded", prisma);
 }
 
 main()

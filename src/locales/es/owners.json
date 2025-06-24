@@ -1,9 +1,9 @@
 {
-    "title": "Owners",
-    "fields": {
-        "name": "Name",
-        "email": "Email",
-        "password": "Password",
-        "action": "Create Owner"
-    }
+  "title": "(es)Owners",
+  "fields": {
+    "name": "(es)Name",
+    "email": "(es)Email",
+    "password": "(es)Password",
+    "action": "(es)Create Owner"
+  }
 }
